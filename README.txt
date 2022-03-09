@@ -1,4 +1,4 @@
-# Petit fichier pour rappeler quelques usages avec notre github:
+Petit fichier pour rappeler quelques usages avec notre github:
 
 •   Quand vous travaillez vérifiez bien sur quelle branche vous êtes, utilisez la commande: "git branch --show-current"
 •   Lorsque vous avez fini vos modifications et que vous voulez l'ajouter au repository (au github)
