@@ -36,4 +36,4 @@ Pour changer de branche:
 
 Pour voir le nom de toutes les branches:
 
-        "git branch" // et tapez ":q" pour quitter la liste dans votre console
+        "git branch" // et tapez ":q" pour quitter la liste dans votre console.
