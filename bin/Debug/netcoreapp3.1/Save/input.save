@@ -1,0 +1,16 @@
+{
+  "defaultkbController": {
+    "quit": 27
+  },
+  "defaultGB1Controller": {},
+  "defaultGB2Controller": {},
+  "defaultGB3Controller": {},
+  "defaultGB4Controller": {},
+  "kbController": {
+    "quit": 27
+  },
+  "gp1Controller": {},
+  "gp2Controller": {},
+  "gp3Controller": {},
+  "gp4Controller": {}
+}
