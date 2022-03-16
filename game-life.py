@@ -6,6 +6,8 @@ import time
 
 # -------------------------------------------------------------------------
 
+# Ici c'est une classe
+
 
 class Board(object):
     def __init__(self, size, seed='Random'):
