@@ -4,6 +4,8 @@ from component.Board import *
 from component.Cell import *
 from component.Graphics import *
 
+TIME = 100
+
 window = Tk()  # l'objet qui va permettre de définir l'ensemble des elements de la fenetre
 width = 800
 height = 610
@@ -13,9 +15,9 @@ canvas.pack(side=TOP, padx=0, pady=0)
 graphicSetting = GraphicsSetting(width, height, 16, canvas)
 
 # Crée un tableau/board et l'actualisé
-board = Board(width // 16, height // 16, 16, 16)  # OK
+board = Board(width // 16, height // 16, 16, 16, 2)
 board.Init()
-# board.Show()
+#board.Show()
 
 dt = 0
 def mainLoop():
@@ -24,7 +26,7 @@ def mainLoop():
     board.Update()
     board.Draw(graphicSetting)
 
-    window.after(1, mainLoop)
+    window.after(TIME, mainLoop)
     dt = time.time() - oldTimer
 
 

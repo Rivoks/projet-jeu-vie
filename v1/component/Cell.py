@@ -8,6 +8,11 @@ class Cell:
         
     def GetNextState(self, nbNeighboor):
         if self.isAlive:
+            return nbNeighboor > 6 and nbNeighboor < 13
+        else:
+            return nbNeighboor == 6 or nbNeighboor == 8 or nbNeighboor == 12
+        
+        if self.isAlive:
             return nbNeighboor == 2 or nbNeighboor == 3
         else:
             return nbNeighboor == 3
