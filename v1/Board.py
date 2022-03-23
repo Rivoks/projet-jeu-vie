@@ -1,4 +1,4 @@
-from v1.Cell import Cell
+from Cell import Cell
 import random
 from tkinter import *
 
