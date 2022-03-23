@@ -1,8 +1,8 @@
 from tkinter import *
 import time
 
-from Board import Board
-from Cell import Cell
+from components.Board import Board
+from components.Cell import Cell
 
 TIME = 100
 
@@ -32,5 +32,8 @@ def mainLoop():
 
 
 board.Draw(canvas, width, height)
-mainLoop()
-window.mainloop()
+
+
+if __name__ == "__main__":
+    mainLoop()
+    window.mainloop()
