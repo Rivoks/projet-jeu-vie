@@ -8,7 +8,7 @@ TIME = 100
 
 window = Tk()  # l'objet qui va permettre de définir l'ensemble des elements de la fenetre
 width = 800
-height = 609
+height = 610
 canvas = Canvas(window, width=width, height=height,
                 bg='white')  # on définie la zone de dessin
 canvas.pack(side=TOP, padx=0, pady=0)
