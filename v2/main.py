@@ -42,7 +42,7 @@ class Board(object):
                 i, self.engine.nBirth, self.engine.nSurvive))
 
             # Vitesse de défilement
-            plt.pause(0.1)
+            plt.pause(1)
 
             # On utilise 'yield' pour générer l'objet que l'on vient de d'initialiser plus haut
             yield self
@@ -95,7 +95,8 @@ def main():
     bHeight = int(args['height'])
     bWidth = int(args['width'])
     board = Board((bHeight, bWidth))
-    for _ in board.animate():
+
+    for _ in board.animate():  # On anime notre tableau en boucle
         pass
 
 
