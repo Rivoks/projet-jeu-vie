@@ -1,8 +1,10 @@
 from tkinter import *
 import time
 
-from v1.Board import Board
-from v1.Cell import Cell
+from Board import Board
+from Cell import Cell
+
+TIME = 100
 
 window = Tk()  # l'objet qui va permettre de définir l'ensemble des elements de la fenetre
 width = 800
@@ -25,7 +27,7 @@ def mainLoop():
     board.Update()
     board.Draw(canvas, width, height)
 
-    window.after(1, mainLoop)
+    window.after(TIME, mainLoop)
     dt = time.time() - oldTimer
 
 
