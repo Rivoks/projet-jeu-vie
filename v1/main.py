@@ -16,7 +16,8 @@ dt, oldClock, newClock = 0, 0, 0
 
 
 def Setup():
-    global newClock, oldClock
+    global newClock, oldClock, window
+    window.title(string = "Game Of Life")
     oldClock = time.time()
     newClock = oldClock
     canvas.pack(side=TOP, padx = 0, pady = 0)
