@@ -1,7 +1,5 @@
-from operator import ne
 from tkinter import *
 import time
-import datetime
 from component.Board import *
 from component.Cell import *
 from component.Graphics import *
@@ -13,7 +11,7 @@ height = 900
 canvas = Canvas(window, width=width, height=height, bg='white')  # on définie la zone de dessin
 graphicSetting = GraphicsSetting(width, height, 8, canvas)
 # Crée un tableau/board et l'actualisé
-board = Board(width // 16, height // 16, 16, 16, 2)
+board = Board(width // 16, height // 16, 16, 16)
 dt, oldClock, newClock = 0, 0, 0
 
 
@@ -22,6 +20,9 @@ def Setup():
     oldClock = time.time()
     newClock = oldClock
     canvas.pack(side=TOP, padx=0, pady=0)
+    Cell.NB_STATE = 2
+    Cell.SetColors()
+    Board.neighbourRadius = 1
     board.Init()
 
 def mainLoop():
