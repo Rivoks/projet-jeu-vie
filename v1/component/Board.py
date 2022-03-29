@@ -59,7 +59,7 @@ class Board:
                         nbNeighboor += 1
         return nbNeighboor
 
-    def Update(self):
+    def Update(self, dt):
         oldArr = self.CloneArrCells()
         for x in range(0, self.height):
             for y in range(0, self.width):
