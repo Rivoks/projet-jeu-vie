@@ -19,10 +19,10 @@ def Setup():
     global newClock, oldClock
     oldClock = time.time()
     newClock = oldClock
-    canvas.pack(side=TOP, padx=0, pady=0)
-    Cell.NB_STATE = 2
+    canvas.pack(side=TOP, padx = 0, pady = 0)
+    Cell.NB_STATE = 5
     Cell.SetColors()
-    Board.neighbourRadius = 1
+    Board.neighbourRadius = 2
     board.Init()
 
 def mainLoop():

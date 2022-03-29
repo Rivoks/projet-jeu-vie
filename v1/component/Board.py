@@ -1,11 +1,11 @@
-from cgi import print_directory
 from component.Cell import *
 import random
 from tkinter import *
 
 class Board:
 
-    neighbourRadius = 0
+    neighbourRadius = 0 # static attribute!
+    maxNeighbours = 0 # static attribute!
 
     def __init__(self, boardWidth, boardHeight, cellsWidth, cellsHeight):
         self.cellsArr = []
@@ -15,6 +15,7 @@ class Board:
         self.cellsHeight = cellsHeight  # la hauteur en pixel de la cellule*
 
     def Init(self):
+        Board.maxNeighbours = ((3 + ((Board.neighbourRadius - 1) * 2))**2) - 1
         random.seed()
         self.cellsArr = []
         # on parcour tout le tableau
@@ -53,7 +54,7 @@ class Board:
         neighboors = []#init to a list of 0
         for _ in range(0, Cell.NB_STATE):
             neighboors.append(0)
-            
+
         for i in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
             for j in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
                 if ((j != 0 or i != 0) and self.CellCoordonateExist(x + i, y + j)):
@@ -81,6 +82,5 @@ class Board:
         # pour les cellules
         for x in range(0, self.height):
             for y in range(0, self.width):
-                #color = 'white' if self.cellsArr[x][y].isAlive else 'black'
                 color = self.cellsArr[x][y].GetColor()
                 graphics.canvas.create_rectangle(y * self.cellsWidth, x * self.cellsHeight, y * self.cellsWidth + self.cellsWidth, x * self.cellsHeight + self.cellsHeight, fill=color)
