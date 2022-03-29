@@ -23,8 +23,8 @@ class Board:
             self.cellsArr.append([])
             for y in range(0, self.width):
                 # on init chaque cell avec un probabilité pAlive d'etre en vie
-                alive = random.randint(0, Cell.NB_STATE - 1)
-                self.cellsArr[x].append(Cell(alive))
+                randState = random.randint(0, Cell.NB_STATE - 1)
+                self.cellsArr[x].append(Cell(randState))
 
     def CloneArrCells(self):
         clone = []
