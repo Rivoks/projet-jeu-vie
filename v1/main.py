@@ -6,21 +6,20 @@ from component.Graphics import *
 
 TARGETEDDELTATIME = 1
 window = Tk()  # l'objet qui va permettre de définir l'ensemble des elements de la fenetre
-width = 1600
-height = 900
-canvas = Canvas(window, width=width, height=height, bg='white')  # on définie la zone de dessin
+width = 900
+height = 500
+canvas = Canvas(window, width=width, height=height, bg = 'white')  # on définie la zone de dessin
 graphicSetting = GraphicsSetting(width, height, 8, canvas)
 # Crée un tableau/board et l'actualisé
 board = Board(width // 16, height // 16, 16, 16)
 dt, oldClock, newClock = 0, 0, 0
-
 
 def Setup():
     global newClock, oldClock, window
     window.title(string = "Game Of Life")
     oldClock = time.time()
     newClock = oldClock
-    canvas.pack(side=TOP, padx = 0, pady = 0)
+    canvas.pack(side = TOP, padx = 0, pady = 0)
     Cell.NB_STATE = 5
     Cell.SetColors()
     Board.neighbourRadius = 2
