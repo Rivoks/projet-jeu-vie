@@ -8,10 +8,11 @@ TARGETEDDELTATIME = 1
 window = Tk()  # l'objet qui va permettre de définir l'ensemble des elements de la fenetre
 width = 900
 height = 500
-canvas = Canvas(window, width=width, height=height, bg = 'white')  # on définie la zone de dessin
+cellSize = 16
+canvas = Canvas(window, width = width, height = height, bg = 'white')  # on définie la zone de dessin
 graphicSetting = GraphicsSetting(width, height, 8, canvas)
 # Crée un tableau/board et l'actualisé
-board = Board(width // 16, height // 16, 16, 16, UpdateType.Custom1)
+board = Board(width // cellSize, height // cellSize, cellSize, cellSize, UpdateType.Custom1)
 dt, oldClock, newClock = 0, 0, 0
 
 def Setup():

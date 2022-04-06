@@ -1,5 +1,6 @@
 from enum import Enum
 from component.Cell import *
+from component.Graphics import *
 import random
 from tkinter import *
 
@@ -43,21 +44,29 @@ class Board:
         return clone
 
     # Pour le debug on affiche le tablau dans la console
-    def Show(self):
+    def Show(self, arr):
         for x in range(0, self.height):
             line = "["
             for y in range(0, self.width):
-                line += str(self.cellsArr[x][y].state)
+                line += str(arr[x][y].state)
                 if y < self.width - 1:
                     line += ","
             line += "]"
             print(line)
         print("")
         
-    def CellCoordonateExist(self, x, y):
-        return x >= 0 and x < self.height and y >= 0 and y < self.width
+    def ConvertCoordonate(self, x, y):
+        if x < 0:
+            x += self.width
+        if x >= self.width:
+            x -= self.width
+        if y < 0:
+            y += self.height
+        if y >= self.height:
+            y -= self.height
+        return x, y
         
-    #Léonard's version
+    #custom version
     def GetNeighbours(self, x, y, oldArr):
         neighboors = []#init to a list of 0
         for _ in range(0, Cell.NB_STATE):
@@ -65,16 +74,18 @@ class Board:
 
         for i in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
             for j in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
-                if ((j != 0 or i != 0) and self.CellCoordonateExist(x + i, y + j)):
-                    neighboors[oldArr[x + i][y + j].state] += 1
+                if j != 0 or i != 0:
+                    xTmp, yTmp = self.ConvertCoordonate(x + i, y + j)
+                    neighboors[oldArr[yTmp][xTmp].state] += 1
         return neighboors
     
     def GetSumNeighbours(self, x, y, oldArr):
         sum = 0
         for i in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
             for j in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
-                if ((j != 0 or i != 0) and self.CellCoordonateExist(x + i, y + j)):
-                    sum += oldArr[x + i][y + j].state
+                if j != 0 or i != 0:
+                    xTmp, yTmp = self.ConvertCoordonate(x + i, y + j)
+                    sum += oldArr[yTmp][xTmp].state
         return sum
 
     def Update(self, dt):
