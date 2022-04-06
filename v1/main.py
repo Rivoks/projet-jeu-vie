@@ -22,7 +22,7 @@ def Setup():
     canvas.pack(side = TOP, padx = 0, pady = 0)
     Cell.NB_STATE = 5
     Cell.SetColors()
-    Board.neighbourRadius = 2
+    Board.neighbourRadius = 3
     board.Init()
 
 def mainLoop():

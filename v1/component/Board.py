@@ -18,6 +18,7 @@ class Board:
         Board.maxNeighbours = ((3 + ((Board.neighbourRadius - 1) * 2))**2) - 1
         random.seed()
         self.cellsArr = []
+        Cell.neighbourRadius = self.neighbourRadius
         # on parcour tout le tableau
         for x in range(0, self.height):
             self.cellsArr.append([])
@@ -49,7 +50,8 @@ class Board:
         
     def CellCoordonateExist(self, x, y):
         return x >= 0 and x < self.height and y >= 0 and y < self.width
-            
+        
+    #Léonard's version
     def GetNeighbours(self, x, y, oldArr):
         neighboors = []#init to a list of 0
         for _ in range(0, Cell.NB_STATE):
@@ -60,6 +62,9 @@ class Board:
                 if ((j != 0 or i != 0) and self.CellCoordonateExist(x + i, y + j)):
                     neighboors[oldArr[x + i][y + j].state] += 1
         return neighboors
+    
+    def GetSumNeighbours(self, x, y, oldArr):
+        pass
 
     def Update(self, dt):
         oldArr = self.CloneArrCells()

@@ -1,17 +1,19 @@
 import random
+from component.Board import *
 
 class Cell:
     
     NB_STATE = 0 # static attribute!
+    neighbourRadius = 0
     colors = []
 
     @staticmethod
     def SetColors():
-        Cell.colors.append('black')#0 <=> black
-        Cell.colors.append('blue')
-        Cell.colors.append('green')
-        Cell.colors.append('yellow')
-        Cell.colors.append('red')
+        Cell.colors.append('#000000')
+        Cell.colors.append('#323232')
+        Cell.colors.append('#7d7d7d')
+        Cell.colors.append('#c8c8c8')
+        Cell.colors.append('#ffffff')
 
     def __init__(self, state):
         self.state = state #on étend les états d'un cellule a plus que 2
@@ -22,6 +24,10 @@ class Cell:
     def GetColor(self):
         return Cell.colors[self.state]
 
+    
+    def GetStateLargerThanLife(self, sumNeighboor):
+        pass
+    
     #return a number between 0 and Cell.NB_STATE - 1
     #neighboors is a list which contain te number of cells which have the state 0 to NB_STATE - 1
     def GetNextState(self, neighboors):
@@ -29,14 +35,14 @@ class Cell:
         #pattern
         match self.state:
             case 0 :
-                if neighboors[0] > 3 or (neighboors[2] > 4 and neighboors[3] > 4):
+                if neighboors[0] % Cell.neighbourRadius > 3 or (neighboors[2] % Cell.neighbourRadius> 4 and neighboors[3] % Cell.neighbourRadius > 4):
                     return 1
-                elif neighboors[4] > 7:
+                elif neighboors[4] % Cell.neighbourRadius > 7:
                     return 3
                 else:
                     return 2
             case 1 :
-                if  neighboors[2] > 2 and neighboors[3] > 2 and neighboors[4] > 2:
+                if  neighboors[2] % Cell.neighbourRadius > 2 and neighboors[3] % Cell.neighbourRadius > 2 and neighboors[4] % Cell.neighbourRadius > 2:
                     return 2
                 else:
                     return 4
@@ -46,14 +52,14 @@ class Cell:
                 else:
                     return 2
             case 3 :
-                if  neighboors[3] > 7:
+                if  neighboors[3] > 7 % Cell.neighbourRadius:
                     return 2
                 else:
                     return random.randint(0, 4)
             case 4 :
-                if neighboors[0] > 5 or (neighboors[2] > 4 and neighboors[3] > 4 and neighboors[4] > 5):
+                if neighboors[0] > 5 % Cell.neighbourRadius or (neighboors[2] % Cell.neighbourRadius > 4  and neighboors[3] > 4 and neighboors[4] > 5):
                     return 1
-                elif neighboors[4] > 5:
+                elif neighboors[4] % Cell.neighbourRadius > 5:
                     return random.randint(0, 3)
                 else:
                     return 4
