@@ -1,18 +1,24 @@
+from enum import Enum
 from component.Cell import *
 import random
 from tkinter import *
 
+class UpdateType(Enum):
+    Custom1 = 0
+    LTL = 1
+    
 class Board:
 
     neighbourRadius = 0 # static attribute!
     maxNeighbours = 0 # static attribute!
 
-    def __init__(self, boardWidth, boardHeight, cellsWidth, cellsHeight):
+    def __init__(self, boardWidth, boardHeight, cellsWidth, cellsHeight, updateType):
         self.cellsArr = []
         self.width = boardWidth
         self.height = boardHeight
         self.cellsWidth = cellsWidth  # la largeur en pixel de la cellule
         self.cellsHeight = cellsHeight  # la hauteur en pixel de la cellule*
+        self.updateType = updateType
 
     def Init(self):
         Board.maxNeighbours = ((3 + ((Board.neighbourRadius - 1) * 2))**2) - 1
@@ -64,14 +70,26 @@ class Board:
         return neighboors
     
     def GetSumNeighbours(self, x, y, oldArr):
-        pass
+        sum = 0
+        for i in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
+            for j in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
+                if ((j != 0 or i != 0) and self.CellCoordonateExist(x + i, y + j)):
+                    sum += oldArr[x + i][y + j].state
+        return sum
 
     def Update(self, dt):
         oldArr = self.CloneArrCells()
-        for x in range(0, self.height):
-            for y in range(0, self.width):
-                neighboors = self.GetNeighbours(x, y, oldArr)
-                self.cellsArr[x][y].state = self.cellsArr[x][y].GetNextState(neighboors)
+        match self.updateType:
+            case UpdateType.Custom1:
+                for x in range(0, self.height):
+                    for y in range(0, self.width):
+                        neighboors = self.GetNeighbours(x, y, oldArr)
+                        self.cellsArr[x][y].state = self.cellsArr[x][y].GetNextState(neighboors)
+            case UpdateType.LTL:
+                for x in range(0, self.height):
+                    for y in range(0, self.width):
+                        sum = self.GetSumNeighbours(x, y, oldArr)
+                        self.cellsArr[x][y].state = self.cellsArr[x][y].GetStateLargerThanLife(sum)
 
     def Draw(self, graphics):
         graphics.canvas.delete(ALL)
