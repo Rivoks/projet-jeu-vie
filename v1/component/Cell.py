@@ -9,6 +9,7 @@ class Cell:
 
     @staticmethod
     def SetColors():
+        Cell.colors = []
         Cell.colors.append('#000000')
         Cell.colors.append('#323232')
         Cell.colors.append('#7d7d7d')

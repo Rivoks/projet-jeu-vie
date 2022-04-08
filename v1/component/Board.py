@@ -2,11 +2,13 @@ from enum import Enum
 from component.Cell import *
 from component.Graphics import *
 import random
+from component.Useful import *
 from tkinter import *
 
 class UpdateType(Enum):
     Custom1 = 0
     LTL = 1
+    LTL2 = 2 #en incluant les poids
     
 class Board:
 
@@ -87,6 +89,18 @@ class Board:
                     xTmp, yTmp = self.ConvertCoordonate(x + i, y + j)
                     sum += oldArr[yTmp][xTmp].state
         return sum
+    
+    def GetWeigthCoeff(self, distance):
+        return Useful.Lerp(0, 1, distance / Board.neighbourRadius)
+    
+    def GetSumNeighboursWidthCoeff(self, x, y, oldArr):
+        sum = 0.0
+        for i in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
+            for j in range(-Board.neighbourRadius, Board.neighbourRadius + 1):
+                if j != 0 or i != 0:
+                    xTmp, yTmp = self.ConvertCoordonate(x + i, y + j)
+                    sum += oldArr[yTmp][xTmp].state * self.GetWeigthCoeff(abs(i) + abs(j))
+        return sum
 
     def Update(self, dt):
         oldArr = self.CloneArrCells()
@@ -100,6 +114,11 @@ class Board:
                 for x in range(0, self.height):
                     for y in range(0, self.width):
                         sum = self.GetSumNeighbours(x, y, oldArr)
+                        self.cellsArr[x][y].state = self.cellsArr[x][y].GetStateLargerThanLife(sum)
+            case UpdateType.LTL2:
+                for x in range(0, self.height):
+                    for y in range(0, self.width):
+                        sum = self.GetSumNeighboursWidthCoeff(x, y, oldArr)
                         self.cellsArr[x][y].state = self.cellsArr[x][y].GetStateLargerThanLife(sum)
 
     def Draw(self, graphics):

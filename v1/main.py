@@ -12,7 +12,7 @@ cellSize = 16
 canvas = Canvas(window, width = width, height = height, bg = 'white')  # on définie la zone de dessin
 graphicSetting = GraphicsSetting(width, height, 8, canvas)
 # Crée un tableau/board et l'actualisé
-board = Board(width // cellSize, height // cellSize, cellSize, cellSize, UpdateType.Custom1)
+board = Board(width // cellSize, height // cellSize, cellSize, cellSize, UpdateType.LTL2)
 dt, oldClock, newClock = 0, 0, 0
 
 def Setup():
