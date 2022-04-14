@@ -47,48 +47,6 @@ class MainGame:
             self.oldClock = self.newClock
             self.window.after(self.TARGETEDDELTATIME, self.mainLoop)
 
-
-
-
-
-
-"""
-#to remove
-TARGETEDDELTATIME = 1
-window = Tk()  # l'objet qui va permettre de définir l'ensemble des elements de la fenetre
-width = 900
-height = 500
-cellSize = 16
-canvas = Canvas(window, width = width, height = height, bg = 'white')  # on définie la zone de dessin
-graphicSetting = GraphicsSetting(width, height, 8, canvas)
-# Crée un tableau/board et l'actualisé
-board = Board(width // cellSize, height // cellSize, cellSize, cellSize, UpdateType.LTL2)
-dt, oldClock, newClock = 0, 0, 0
-
-def Setup():
-    global newClock, oldClock, window
-    window.title(string = "Game Of Life")
-    oldClock = time.time()
-    newClock = oldClock
-    canvas.pack(side = TOP, padx = 0, pady = 0)
-    Cell.NB_STATE = 5
-    Cell.SetColors()
-    Board.neighbourRadius = 3
-    board.Init()
-    ButtonsManager.CreateButtons(window)
-
-def mainLoop():
-    global newClock, oldClock
-    newClock = time.time()
-    dt = (newClock - oldClock) * 1000
-
-    board.Update(dt)
-    board.Draw(graphicSetting)
-    
-    oldClock = newClock
-    window.after(TARGETEDDELTATIME, mainLoop)
-"""
-
 if __name__ == '__main__':
     mainGame = MainGame()
     mainGame.Setup()
