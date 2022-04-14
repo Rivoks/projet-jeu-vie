@@ -1,6 +1,6 @@
 #Implémente a règle de larger than life, mais sans utiliser de poids.
-from component.Cell import *
 from component.Board import *
+from component.Cell import *
 
 class LTL:
 

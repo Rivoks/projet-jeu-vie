@@ -1,5 +1,3 @@
-import random
-from component.Board import *
 
 class Cell:
     

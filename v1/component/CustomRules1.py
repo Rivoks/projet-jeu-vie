@@ -1,6 +1,6 @@
 #Implémente a règle de Léonard, càd compte de nombre de cellules dans chaque états.
-from component.Cell import *
 from component.Board import *
+from component.Cell import *
 
 class CustomRules1:
 

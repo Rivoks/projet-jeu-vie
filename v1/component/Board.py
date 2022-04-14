@@ -1,12 +1,10 @@
 from enum import Enum
+from tkinter import *
 from component.Cell import *
-from component.Graphics import *
 from component.CustomRules1 import *
 from component.LTL import *
 from component.LTL2 import *
 import random
-from component.Useful import *
-from tkinter import *
 
 class UpdateType(Enum):
     Custom1 = 0

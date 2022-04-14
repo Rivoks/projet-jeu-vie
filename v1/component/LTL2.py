@@ -1,7 +1,8 @@
 #Implémente a règle de larger than life en utilisant des poids.
-from component.Cell import *
 from component.Board import *
-from component.Useful import *
+from component.Cell import *
+from component.Useful import * 
+import random
 
 class LTL2:
 
