@@ -82,8 +82,6 @@ class Board:
 
     def Update(self, dt):
         self.count += 1
-        if self.count % 10 == 0:
-            print("radius = " + str(Board.neighbourRadius))
         oldArr = self.CloneArrCells()
         match self.updateType:
             case UpdateType.Custom1:
