@@ -24,6 +24,7 @@ class Board:
         self.cellsWidth = cellsWidth  # la largeur en pixel de la cellule
         self.cellsHeight = cellsHeight  # la hauteur en pixel de la cellule*
         self.updateType = updateType
+        self.count = 0
 
     def Init(self):
         Board.maxNeighbours = ((3 + ((Board.neighbourRadius - 1) * 2))**2) - 1
@@ -80,6 +81,9 @@ class Board:
         return x, y
 
     def Update(self, dt):
+        self.count += 1
+        if self.count % 10 == 0:
+            print("radius = " + str(Board.neighbourRadius))
         oldArr = self.CloneArrCells()
         match self.updateType:
             case UpdateType.Custom1:

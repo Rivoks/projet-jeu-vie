@@ -1,6 +1,7 @@
 #Implémente a règle de larger than life, mais sans utiliser de poids.
 from component.Board import *
 from component.Cell import *
+import random
 
 class LTL:
 
@@ -53,5 +54,5 @@ class LTL:
     def Update(oldArr, board, dt):
         for x in range(0, board.height):
             for y in range(0, board.width):
-                sum = LTL.GetSumNeighbours(x, y, oldArr,)
+                sum = LTL.GetSumNeighbours(x, y, oldArr, board)
                 board.cellsArr[x][y].state = LTL.GetNextState(board.cellsArr[x][y], sum)

@@ -7,6 +7,7 @@ import random
 class LTL2:
 
     weigth = []
+    
 
     @staticmethod
     def Init():
