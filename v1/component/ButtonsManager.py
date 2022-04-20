@@ -7,7 +7,9 @@ class ButtonsManager:
         self.mainGame = mainGame
 
     def Go(self):
-        #"démarrage de l'animation"        
+        #"démarrage de l'animation"
+        if self.mainGame.flag == 1:
+            return
         self.mainGame.flag = 1
         self.mainGame.board.Draw(self.mainGame.graphicSetting)
         self.mainGame.mainLoop()
