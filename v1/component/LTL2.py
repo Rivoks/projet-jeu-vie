@@ -1,19 +1,21 @@
-#Implémente a règle de larger than life en utilisant des poids.
+# Implémente a règle de larger than life en utilisant des poids.
 from component.Board import *
 from component.Cell import *
-from component.Useful import * 
+from component.Useful import *
 import random
+
 
 class LTL2:
 
     weigth = []
-    stateRange = []#les intervalles de naissance/survie pour tout les états
+    stateRange = []  # les intervalles de naissance/survie pour tout les états
 
     @staticmethod
     def Init():
         LTL2.ChangeWeight(Cell.neighbourRadius)
         LTL2.stateRange = [
-            [5, 12, 1, 3],#[a, b, c, d] si une cellule est à l'état 0, elle passe a l'état c si elle a entre a et b voisines,
+            # [a, b, c, d] si une cellule est à l'état 0, elle passe a l'état c si elle a entre a et b voisines,
+            [5, 12, 1, 3],
             # sinon elle va à l'état d
             [5, 12, 0, 4],
             [5, 12, 1, 0],
@@ -21,50 +23,49 @@ class LTL2:
             [5, 12, 4, 2],
         ]
         print(LTL2.weigth)
-        
+
     @staticmethod
     def ChangeWeight(newRadius):
+        print("newRadius", newRadius)
         LTL2.weigth = []
         for i in range(0, 2 * newRadius + 1):
             LTL2.weigth.append(Useful.Lerp(0, 1, i / (2.0 * newRadius)))
-            
-        
-        
+
     @staticmethod
     def GetNextState(cell, sumNeighboor):
         if LTL2.stateRange[cell.state][0] >= sumNeighboor and sumNeighboor <= LTL2.stateRange[cell.state][1]:
             return LTL2.stateRange[cell.state][2]
         else:
             return LTL2.stateRange[cell.state][3]
-        
+
         return 0
         match cell.state:
-            case 0 :
-                if sumNeighboor > 10 and sumNeighboor < 20 :
+            case 0:
+                if sumNeighboor > 10 and sumNeighboor < 20:
                     return 1
                 else:
                     return 2
-            case 1 :
-                if sumNeighboor < 4 or sumNeighboor > 30 :
+            case 1:
+                if sumNeighboor < 4 or sumNeighboor > 30:
                     return 2
                 else:
                     return 4
-            case 2 :
+            case 2:
                 if random.random() > 0.5:
                     return 3
                 else:
                     return 2
-            case 3 :
-                if  4 + (sumNeighboor % Cell.neighbourRadius) > 7:
+            case 3:
+                if 4 + (sumNeighboor % Cell.neighbourRadius) > 7:
                     return 2
                 else:
                     return random.randint(0, 4)
-            case 4 :
+            case 4:
                 if sumNeighboor > 15 - Cell.neighbourRadius:
                     return random.randint(0, 3)
                 else:
                     return 4
-            case _ :
+            case _:
                 return 4
 
     @staticmethod
@@ -74,7 +75,8 @@ class LTL2:
             for j in range(-Cell.neighbourRadius, Cell.neighbourRadius + 1):
                 if j != 0 or i != 0:
                     xTmp, yTmp = board.ConvertCoordonate(x + i, y + j)
-                    sum += oldArr[yTmp][xTmp].state * LTL2.weigth[abs(i) + abs(j)]
+                    sum += oldArr[yTmp][xTmp].state * \
+                        LTL2.weigth[abs(i) + abs(j)]
         return sum
 
     @staticmethod
@@ -82,4 +84,5 @@ class LTL2:
         for x in range(0, board.height):
             for y in range(0, board.width):
                 sum = LTL2.GetSumNeighbours(x, y, oldArr, board)
-                board.cellsArr[x][y].state = LTL2.GetNextState(board.cellsArr[x][y], sum)
+                board.cellsArr[x][y].state = LTL2.GetNextState(
+                    board.cellsArr[x][y], sum)

@@ -16,7 +16,7 @@ class MainGame:
         # l'objet qui va permettre de définir l'ensemble des elements de la fenetre
         self.window = Tk()
         self.dt, self.oldClock, self.newClock = 0, 0, 0
-        self.window.title(string = "Game Of Life")
+        self.window.title(string="Game Of Life")
         self.oldClock = time.time()
         self.newClock = self.oldClock
 
@@ -46,6 +46,8 @@ class MainGame:
     def mainLoop(self):
         self.newClock = time.time()
         self.dt = (self.newClock - self.oldClock) * 1000
+
+        print("Temps réel: %.2f ms" % self.dt)
 
         self.board.Update(self.dt)
         self.board.Draw(self.graphicSetting)
