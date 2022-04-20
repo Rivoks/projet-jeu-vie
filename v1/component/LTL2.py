@@ -7,7 +7,7 @@ import random
 class LTL2:
 
     weigth = []
-    
+    stateRange = []#les intervalles de naissance/survie pour tout les états
 
     @staticmethod
     def Init():
@@ -18,11 +18,25 @@ class LTL2:
             Useful.Lerp(0, 1, 3 / Cell.neighbourRadius),
             Useful.Lerp(0, 1, 4 / Cell.neighbourRadius),
             Useful.Lerp(0, 1, 5 / Cell.neighbourRadius),
-            1,
-            ]
+            1,    
+        ]
+        LTL2.stateRange = [
+            [5, 12, 1, 3],#[a, b, c, d] si une cellule est à l'état 0, elle passe a l'état c si elle a entre a et b voisines,
+            # sinon elle va à l'état d
+            [5, 12, 0, 4],
+            [5, 12, 1, 0],
+            [5, 12, 3, 1],
+            [5, 12, 4, 2],
+        ]
 
     @staticmethod
     def GetNextState(cell, sumNeighboor):
+        if LTL2.stateRange[cell.state][0] <= sumNeighboor and sumNeighboor <= LTL2.stateRange[cell.state][1]:
+            return LTL2.stateRange[cell.state][2]
+        else:
+            return LTL2.stateRange[cell.state][3]
+        
+        return 0
         match cell.state:
             case 0 :
                 if sumNeighboor > 10 and sumNeighboor < 20 :
