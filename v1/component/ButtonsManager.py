@@ -1,5 +1,6 @@
 from tkinter import *
 from component.Board import *
+from component.LTL2 import *
 
 class ButtonsManager:
 
@@ -29,6 +30,7 @@ class ButtonsManager:
     def Change_rayon(self, event): #fonction pour changer la vitesse(l'attente entre chaque étape)        
         Board.neighbourRadius = int(eval(self.entree2.get()))
         Cell.neighbourRadius = int(eval(self.entree2.get()))
+        LTL2.ChangeWeight(int(eval(self.entree2.get())))
         print("Changement du rayon du Board : {neig}".format(neig = Board.neighbourRadius))
 
     def CreateButtons(self, window):

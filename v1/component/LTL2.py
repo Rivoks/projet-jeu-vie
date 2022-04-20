@@ -11,15 +11,7 @@ class LTL2:
 
     @staticmethod
     def Init():
-        LTL2.weigth = [
-            0,
-            Useful.Lerp(0, 1, 1 / Cell.neighbourRadius),
-            Useful.Lerp(0, 1, 2 / Cell.neighbourRadius),
-            Useful.Lerp(0, 1, 3 / Cell.neighbourRadius),
-            Useful.Lerp(0, 1, 4 / Cell.neighbourRadius),
-            Useful.Lerp(0, 1, 5 / Cell.neighbourRadius),
-            1,    
-        ]
+        LTL2.ChangeWeight(Cell.neighbourRadius)
         LTL2.stateRange = [
             [5, 12, 1, 3],#[a, b, c, d] si une cellule est à l'état 0, elle passe a l'état c si elle a entre a et b voisines,
             # sinon elle va à l'état d
@@ -28,10 +20,19 @@ class LTL2:
             [5, 12, 3, 1],
             [5, 12, 4, 2],
         ]
-
+        print(LTL2.weigth)
+        
+    @staticmethod
+    def ChangeWeight(newRadius):
+        LTL2.weigth = []
+        for i in range(0, 2 * newRadius + 1):
+            LTL2.weigth.append(Useful.Lerp(0, 1, i / (2.0 * newRadius)))
+            
+        
+        
     @staticmethod
     def GetNextState(cell, sumNeighboor):
-        if LTL2.stateRange[cell.state][0] <= sumNeighboor and sumNeighboor <= LTL2.stateRange[cell.state][1]:
+        if LTL2.stateRange[cell.state][0] >= sumNeighboor and sumNeighboor <= LTL2.stateRange[cell.state][1]:
             return LTL2.stateRange[cell.state][2]
         else:
             return LTL2.stateRange[cell.state][3]
