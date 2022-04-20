@@ -17,6 +17,8 @@ class ButtonsManager:
 
     def Stop(self):
         #"arrêt de l'animation"
+        if self.mainGame.flag == 0:
+            return
         self.mainGame.flag = 0
         print("Arrêt de la simulation")
     
