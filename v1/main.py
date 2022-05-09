@@ -40,6 +40,8 @@ class MainGame:
         Cell.NB_STATE = 2
         Cell.SetColors()
         Board.neighbourRadius = 1
+
+        
         self.board.Init()
         MainGame.mainGame = self
 
