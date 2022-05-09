@@ -1,4 +1,5 @@
 #Implémente a règle de Conway (de base) du jeu de la vie.
+from operator import ne
 from component.Board import *
 from component.Cell import *
 
@@ -12,7 +13,18 @@ class ConwayRule:
     def GetNextState(cell, neighboors):
         #pattern
         if cell.state == 0:
-            return 1 if neighboors == 2 else 0
+            if neighboors == 3:
+                return 1
+            else:
+                return 0
+        else:
+            if neighboors == 2 or neighboors == 3 :
+                return 1
+            else:
+                return 0
+
+        if cell.state == 0:
+            return 1 if neighboors == 3 else 0
         else:
             return 1 if neighboors == 2 or neighboors == 3 else 0
 
