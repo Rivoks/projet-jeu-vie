@@ -83,6 +83,6 @@ class CustomRules1:
     @staticmethod
     def Update(oldArr, board, dt):
         for x in range(0, board.height):
-                    for y in range(0, board.width):
-                        neighboors = CustomRules1.GetNeighbours(x, y, oldArr, board)
-                        board.cellsArr[x][y].state = CustomRules1.GetNextState(board.cellsArr[x][y], neighboors)
+            for y in range(0, board.width):
+                neighboors = CustomRules1.GetNeighbours(x, y, oldArr, board)
+                board.cellsArr[x][y].state = CustomRules1.GetNextState(board.cellsArr[x][y], neighboors)

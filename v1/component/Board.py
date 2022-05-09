@@ -4,12 +4,14 @@ from component.Cell import *
 from component.CustomRules1 import *
 from component.LTL import *
 from component.LTL2 import *
+from component.Conway import *
 import random
 
 class UpdateType(Enum):
     Custom1 = 0
     LTL = 1
-    LTL2 = 2 #en incluant les poids
+    LTL2 = 2, #en incluant les poids
+    Conway = 3
     
 class Board:
 
@@ -38,6 +40,8 @@ class Board:
                 LTL.Init()
             case UpdateType.LTL2:
                 LTL2.Init()
+            case UpdateType.Conway:
+                ConwayRule.Init()
 
         self.cellsArr = []      
         # on parcour tout le tableau
@@ -90,6 +94,8 @@ class Board:
                 LTL.Update(oldArr, self, dt)
             case UpdateType.LTL2:
                 LTL2.Update(oldArr, self, dt)
+            case UpdateType.Conway:
+                ConwayRule.Update(oldArr, self, dt)
 
     def Draw(self, graphics):
         graphics.canvas.delete(ALL)
