@@ -28,7 +28,7 @@ class MainGame:
         self.graphicSetting = GraphicsSetting(
             self.width, self.height, 8, self.canvas)
         self.board = Board(self.width // self.cellSize, self.height //
-                           self.cellSize, self.cellSize, self.cellSize, UpdateType.Conway)
+                           self.cellSize, self.cellSize, self.cellSize, UpdateType.Custom1)
         self.buttonsManager = ButtonsManager(self)
         self.buttonsManager.CreateButtons(self.window)
 
@@ -37,7 +37,7 @@ class MainGame:
         self.height = 500
         self.cellSize = 16
         self.CreateCanvasBoardAndButtons()
-        Cell.NB_STATE = 2
+        Cell.NB_STATE = 5
         Cell.SetColors()
         Board.neighbourRadius = 1
 

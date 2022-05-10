@@ -38,36 +38,6 @@ class LTL2:
         else:
             return LTL2.stateRange[cell.state][3]
 
-        return 0
-        match cell.state:
-            case 0:
-                if sumNeighboor > 10 and sumNeighboor < 20:
-                    return 1
-                else:
-                    return 2
-            case 1:
-                if sumNeighboor < 4 or sumNeighboor > 30:
-                    return 2
-                else:
-                    return 4
-            case 2:
-                if random.random() > 0.5:
-                    return 3
-                else:
-                    return 2
-            case 3:
-                if 4 + (sumNeighboor % Cell.neighbourRadius) > 7:
-                    return 2
-                else:
-                    return random.randint(0, 4)
-            case 4:
-                if sumNeighboor > 15 - Cell.neighbourRadius:
-                    return random.randint(0, 3)
-                else:
-                    return 4
-            case _:
-                return 4
-
     @staticmethod
     def GetSumNeighbours(x, y, oldArr, board):
         sum = 0.0
@@ -84,5 +54,4 @@ class LTL2:
         for x in range(0, board.height):
             for y in range(0, board.width):
                 sum = LTL2.GetSumNeighbours(x, y, oldArr, board)
-                board.cellsArr[x][y].state = LTL2.GetNextState(
-                    board.cellsArr[x][y], sum)
+                board.cellsArr[x][y].state = LTL2.GetNextState(board.cellsArr[x][y], sum)

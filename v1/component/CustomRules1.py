@@ -57,18 +57,6 @@ class CustomRules1:
                 return 1
             else:
                 return 0
-        #rules for the traditionnal game of life
-        if cell.state == 1:
-            if neighboors[1] == 2 or neighboors[1] == 3:
-                return 1
-            else:
-                return 0
-        else:
-            if neighboors[1] == 3:
-                return 1
-            else:
-                return 0
-        
 
     @staticmethod
     def GetNeighbours(x, y, oldArr, board):
