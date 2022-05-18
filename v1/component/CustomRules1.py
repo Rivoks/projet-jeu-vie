@@ -8,7 +8,7 @@ class CustomRules1:
     @staticmethod
     def Init():
         pass
-
+    
     #return a number between 0 and Cell.NB_STATE - 1
     #neighboors is a list which contain te number of cells which have the state 0 to NB_STATE - 1
     @staticmethod

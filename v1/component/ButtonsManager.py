@@ -1,11 +1,16 @@
+from asyncio.windows_events import NULL
 from tkinter import *
 from component.Board import *
+from main import *
 from component.LTL2 import *
 
 class ButtonsManager:
 
+    instance = 0
+
     def __init__(self, mainGame):
         self.mainGame = mainGame
+        ButtonsManager.instance = self
 
     def Go(self):
         #"démarrage de l'animation"
@@ -50,3 +55,4 @@ class ButtonsManager:
         self.entree2 = Entry(window)
         self.entree2.bind("<Return>", self.Change_rayon)
         self.entree2.pack(side = LEFT, padx = 3, pady = 3)
+        self.LTL2Buttons = []

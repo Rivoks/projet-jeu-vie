@@ -4,6 +4,7 @@ from component.Cell import *
 from component.CustomRules1 import *
 from component.LTL import *
 from component.LTL2 import *
+from component.Graphics import *
 from component.Conway import *
 import random
 
@@ -27,6 +28,7 @@ class Board:
         self.cellsHeight = cellsHeight  # la hauteur en pixel de la cellule*
         self.updateType = updateType
         self.count = 0
+        self.initTexture = NULL
 
     def Init(self):
         Board.maxNeighbours = ((3 + ((Board.neighbourRadius - 1) * 2))**2) - 1
@@ -45,12 +47,22 @@ class Board:
 
         self.cellsArr = []      
         # on parcour tout le tableau
-        for x in range(0, self.height):
-            self.cellsArr.append([])
-            for y in range(0, self.width):
-                # on init chaque cell avec un probabilité pAlive d'etre en vie
-                randState = random.randint(0, Cell.NB_STATE - 1)
-                self.cellsArr[x].append(Cell(randState))
+        if(self.initTexture == NULL):
+            for x in range(0, self.height):
+                self.cellsArr.append([])
+                for y in range(0, self.width):
+                    # on init chaque cell avec un probabilité pAlive d'etre en vie
+                    randState = random.randint(0, Cell.NB_STATE - 1)
+                    self.cellsArr[x].append(Cell(randState))
+        else:
+            img = GraphicsSetting.ConvertToGray(self.initTexture)
+            #finir
+            for x in range(0, self.height):
+                self.cellsArr.append([])
+                for y in range(0, self.width):
+                    # on init chaque cell avec un probabilité pAlive d'etre en vie
+                    randState = random.randint(0, Cell.NB_STATE - 1)
+                    self.cellsArr[x].append(Cell(randState))
 
     def CloneArrCells(self):
         clone = []

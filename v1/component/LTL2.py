@@ -2,8 +2,9 @@
 from component.Board import *
 from component.Cell import *
 from component.Useful import *
+from component.ButtonsManager import *
+from main import *
 import random
-
 
 class LTL2:
 
@@ -13,16 +14,22 @@ class LTL2:
     @staticmethod
     def Init():
         LTL2.ChangeWeight(Cell.neighbourRadius)
-        LTL2.stateRange = [
-            # [a, b, c, d] si une cellule est à l'état 0, elle passe a l'état c si elle a entre a et b voisines,
-            [5, 12, 1, 3],
-            # sinon elle va à l'état d
-            [5, 12, 0, 4],
-            [5, 12, 1, 0],
-            [5, 12, 3, 1],
-            [5, 12, 4, 2],
+        # [a, b, c, d] si une cellule est à l'état 0, elle passe a l'état c si elle a entre a et b voisines,
+        # sinon elle va à l'état d 
+        LTL2.stateRange = [ #super clignotant
+            [15, 50, 1, 2],
+            [15, 50, 2, 3],
+            [15, 50, 3, 4],
+            [15, 50, 4, 0],
+            [15, 50, 1, 2],
         ]
-        print(LTL2.weigth)
+        # LTL2.stateRange = [
+        #     [1, 12, 1, 2],
+        #     [1, 12, 2, 3],
+        #     [1, 12, 3, 4],
+        #     [1, 12, 4, 0],
+        #     [1, 12, 1, 2],
+        # ]
 
     @staticmethod
     def ChangeWeight(newRadius):

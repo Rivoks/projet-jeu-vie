@@ -8,7 +8,7 @@ class LTL:
     @staticmethod
     def Init():
         pass
-    
+        
     @staticmethod
     def GetNextState(cell, sumNeighboor):
         match cell.state:

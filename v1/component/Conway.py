@@ -2,6 +2,7 @@
 from operator import ne
 from component.Board import *
 from component.Cell import *
+from main import *
 
 class ConwayRule:
 
