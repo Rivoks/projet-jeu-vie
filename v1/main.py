@@ -35,12 +35,12 @@ class MainGame:
     def Setup(self):
         self.width = 900
         self.height = 700
-        self.cellSize = 8
+        self.cellSize = 16
         self.CreateCanvasBoardAndButtons()
         Cell.NB_STATE = 5
         Cell.SetColors()
         Board.neighbourRadius = 1
-        self.board.initTexture = Image.open('./v1/leopaul.png').resize((self.board.width, self.board.height), Image.ANTIALIAS)
+        self.board.initTexture = Image.open('./v1/cell.png').resize((self.board.width, self.board.height), Image.ANTIALIAS)
         
         
         self.board.Init()
