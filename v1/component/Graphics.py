@@ -17,7 +17,6 @@ class GraphicsSetting:
         print(pixels[0,0][3])
         for x in range(0, w):
             for y in range(0, h):
-                avg = (pixels[x,y][0] + pixels[x,y][1] + pixels[x,y][2]) * 0.333333333
-                #pixels[x, y] = (avg, avg, avg, 255)
-                #pixels[x, y] = (avg, avg, avg)
+                avg = int((pixels[x,y][0] + pixels[x,y][1] + pixels[x,y][2]) * 0.333333333)
+                pixels[x, y] = (avg, avg, avg, 255)
         return img

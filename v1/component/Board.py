@@ -7,6 +7,8 @@ from component.LTL2 import *
 from component.Graphics import *
 from component.Conway import *
 import random
+from component.Colors import hex_to_RGB, ColorDistanceRGB
+
 
 class UpdateType(Enum):
     Custom1 = 0
@@ -55,14 +57,27 @@ class Board:
                     randState = random.randint(0, Cell.NB_STATE - 1)
                     self.cellsArr[x].append(Cell(randState))
         else:
-            img = GraphicsSetting.ConvertToGray(self.initTexture)
-            #finir
             for x in range(0, self.height):
                 self.cellsArr.append([])
                 for y in range(0, self.width):
-                    # on init chaque cell avec un probabilité pAlive d'etre en vie
-                    randState = random.randint(0, Cell.NB_STATE - 1)
-                    self.cellsArr[x].append(Cell(randState))
+                    self.cellsArr[x].append(Cell(0))
+            img = GraphicsSetting.ConvertToGray(self.initTexture)
+            w = img.size[0]
+            h = img.size[1]
+            pixel = img.load()
+            colors = []
+            for i in range(0, Cell.NB_STATE):
+                colors.append(hex_to_RGB(Cell.colors[i]))
+            for x in range(0, w):
+                for y in range(0, h):
+                    index = 0
+                    dist = ColorDistanceRGB(colors[0], pixel[x, y])
+                    for i in range(1, Cell.NB_STATE):
+                        dist2 = ColorDistanceRGB(colors[i], pixel[x, y])
+                        if(dist2 < dist):
+                            dist = dist2
+                            index = i
+                    self.cellsArr[y][x].state = index
 
     def CloneArrCells(self):
         clone = []
