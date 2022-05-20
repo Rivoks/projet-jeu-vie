@@ -17,14 +17,15 @@ class MainGame:
         # l'objet qui va permettre de définir l'ensemble des elements de la fenetre
         self.window = Tk()
         self.dt, self.oldClock, self.newClock = 0, 0, 0
-        self.window.title(string = "Game Of Life")
+        self.window.title(string="Game Of Life")
         self.oldClock = time.time()
         self.newClock = self.oldClock
 
     def CreateCanvasBoardAndButtons(self):
         # on définie la zone de dessin
-        self.canvas = Canvas(self.window, width = self.width, height = self.height, bg = 'white')
-        self.canvas.pack(side = TOP, padx = 0, pady = 0)
+        self.canvas = Canvas(self.window, width=self.width,
+                             height=self.height, bg='white')
+        self.canvas.pack(side=TOP, padx=0, pady=0)
         self.graphicSetting = GraphicsSetting(
             self.width, self.height, 8, self.canvas)
         self.board = Board(self.width // self.cellSize, self.height //
@@ -40,18 +41,17 @@ class MainGame:
         Cell.NB_STATE = 5
         Cell.SetColors()
         Board.neighbourRadius = 1
+
+
         self.board.initTexture = Image.open('./v1/cell.png').resize((self.board.width, self.board.height), Image.ANTIALIAS)
-        
-        
         self.board.Init()
         MainGame.mainGame = self
-
 
     def mainLoop(self):
         self.newClock = time.time()
         self.dt = (self.newClock - self.oldClock) * 1000
 
-        print("Temps réel: %.2f ms" % self.dt)
+        print("Temps réel: {0}ms".format(self.dt))
 
         self.board.Update(self.dt)
         self.board.Draw(self.graphicSetting)
