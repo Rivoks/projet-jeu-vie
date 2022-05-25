@@ -30,7 +30,7 @@ class Board:
         self.cellsHeight = cellsHeight  # la hauteur en pixel de la cellule*
         self.updateType = updateType
         self.count = 0
-        self.initTexture = NULL
+        self.initTexture = 0
 
     def Init(self):
         Board.maxNeighbours = ((3 + ((Board.neighbourRadius - 1) * 2))**2) - 1
@@ -49,7 +49,7 @@ class Board:
 
         self.cellsArr = []      
         # on parcour tout le tableau
-        if(self.initTexture == NULL):
+        if(self.initTexture == 0):
             for x in range(0, self.height):
                 self.cellsArr.append([])
                 for y in range(0, self.width):

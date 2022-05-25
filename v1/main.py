@@ -6,7 +6,6 @@ from component.Graphics import *
 from component.ButtonsManager import *
 from PIL import Image
 
-
 class MainGame:
 
     mainGame = 0  # ref au mainGame du jeu
@@ -42,8 +41,8 @@ class MainGame:
         Cell.SetColors()
         Board.neighbourRadius = 1
 
-
-        self.board.initTexture = Image.open('./v1/cell.png').resize((self.board.width, self.board.height), Image.ANTIALIAS)
+        self.board.initTexture = 0
+        #self.board.initTexture = Image.open('./v1/img.png').resize((self.board.width, self.board.height), Image.ANTIALIAS)
         self.board.Init()
         MainGame.mainGame = self
 
